@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financeiro Empresarial</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- TELA DE LOGIN -->
+    <div
+      id="loginScreen"
+      style="
+        position: fixed;
+        inset: 0;
+        background: #f5f7fb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      "
+    >
+      <div
+        style="
+          background: white;
+          padding: 30px;
+          border-radius: 12px;
+          width: 350px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h2 style="text-align: center; margin-bottom: 20px">
+          Financeiro Empresarial
+        </h2>
+
+        <input
+          id="emailLogin"
+          type="email"
+          placeholder="E-mail"
+          style="
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+          "
+        />
+
+        <input
+          id="senhaLogin"
+          type="password"
+          placeholder="Senha"
+          style="
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+          "
+        />
+
+        <button
+          id="btnEntrar"
+          style="
+            width: 100%;
+            padding: 12px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+          "
+        >
+          Entrar
+        </button>
+
+        <button
+          id="btnCadastrar"
+          style="
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+          "
+        >
+          Criar Conta
+        </button>
+      </div>
+    </div>
+
+    <!-- ============================================
+         HEADER - Barra Superior
+    ============================================ -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <div class="logo-icon">
+            <span>$</span>
+          </div>
+          <h1 class="logo-text">Financeiro Empresarial</h1>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="search-box">
+          <svg
+            class="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <input
+            type="text"
+            placeholder="Buscar contas, categorias..."
+            class="search-input"
+            id="campoPesquisa"
+          />
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="date-filter">
+          <svg
+            class="calendar-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>01/06/2026 - 30/06/2026</span>
+          <svg
+            class="chevron-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <button class="notification-btn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </button>
+        <button id="btnSair" class="notification-btn">Sair</button>
+      </div>
+    </header>
+
+    <!-- ============================================
+         CONTEÚDO PRINCIPAL
+    ============================================ -->
+    <main class="main-content">
+      <!-- ============================================
+             CARDS DE RESUMO
+        ============================================ -->
+      <section class="summary-cards">
+        <!-- Card Total Pendente -->
+        <div class="summary-card card-pendente">
+          <div class="card-left">
+            <div class="card-icon icon-pendente">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="card-info">
+              <span class="card-label">Total Pendente</span>
+              <span class="card-value">R$ 2.450,00</span>
+              <span class="card-count count-pendente">5 contas</span>
+            </div>
+          </div>
+          <div class="card-trend trend-up">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card Total Pago -->
+        <div class="summary-card card-pago">
+          <div class="card-left">
+            <div class="card-icon icon-pago">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="card-info">
+              <span class="card-label">Total Pago</span>
+              <span class="card-value">R$ 5.320,00</span>
+              <span class="card-count count-pago">12 contas</span>
+            </div>
+          </div>
+          <div class="card-trend trend-up">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card Total Atrasado -->
+        <div class="summary-card card-atrasado">
+          <div class="card-left">
+            <div class="card-icon icon-atrasado">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div class="card-info">
+              <span class="card-label">Total Atrasado</span>
+              <span class="card-value">R$ 1.230,00</span>
+              <span class="card-count count-atrasado">3 contas</span>
+            </div>
+          </div>
+          <div class="card-trend trend-down">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card Total Geral -->
+        <div class="summary-card card-geral">
+          <div class="card-left">
+            <div class="card-icon icon-geral">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div class="card-info">
+              <span class="card-label">Total Geral</span>
+              <span class="card-value">R$ 8.000,00</span>
+              <span class="card-count count-geral">20 contas</span>
+            </div>
+          </div>
+          <div class="card-trend trend-up">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+             ÁREA PRINCIPAL - TABELA E GRÁFICO
+        ============================================ -->
+      <section class="main-area">
+        <!-- Tabela de Contas a Pagar -->
+        <div class="contas-container">
+          <div class="contas-header">
+            <h2 class="section-title">Contas a Pagar</h2>
+            <div class="contas-actions">
+              <select id="filtroStatus" class="btn-filter">
+                <option value="Todos">Todos</option>
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+                <option value="Atrasado">Atrasado</option>
+              </select>
+              <button class="btn-nova-conta">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Nova Conta
+              </button>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="contas-table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Categoria</th>
+                  <th>Vencimento</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="contasTableBody">
+                <!-- Dados serão inseridos via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="ver-todas">
+            <button class="btn-ver-todas">
+              Ver todas as contas
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Gráfico de Gastos por Categoria -->
+        <div class="gastos-container">
+          <h2 class="section-title">Gastos por Categoria</h2>
+          <div class="chart-wrapper">
+            <canvas id="gastosChart"></canvas>
+          </div>
+          <div class="chart-legend" id="chartLegend">
+            <!-- Legenda será inserida via JavaScript -->
+          </div>
+          <div class="total-gastos">
+            <span class="total-label">Total de gastos</span>
+            <span class="total-value">R$ 8.000,00</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+             ÁREA INFERIOR - RESUMO E VENCIMENTOS
+        ============================================ -->
+      <section class="bottom-area">
+        <!-- Resumo do Mês -->
+        <div class="resumo-container">
+          <h2 class="section-title">Resumo do Mês</h2>
+          <div class="resumo-content">
+            <div class="resumo-chart">
+              <canvas id="resumoChart"></canvas>
+            </div>
+            <div class="resumo-stats">
+              <div class="stat-item stat-receitas">
+                <div class="stat-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Receitas</span>
+                  <span class="stat-value receitas">R$ 5.320,00</span>
+                  <span class="stat-count">12 contas</span>
+                </div>
+              </div>
+              <div class="stat-item stat-despesas">
+                <div class="stat-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                    <polyline points="17 18 23 18 23 12"></polyline>
+                  </svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Despesas</span>
+                  <span class="stat-value despesas">R$ 2.680,00</span>
+                  <span class="stat-count">8 contas</span>
+                </div>
+              </div>
+              <div class="stat-item stat-saldo">
+                <div class="stat-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-label">Saldo</span>
+                  <span class="stat-value saldo">R$ 2.640,00</span>
+                  <span class="stat-count saldo-status">Positivo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próximos Vencimentos -->
+        <div class="vencimentos-container">
+          <div class="vencimentos-header">
+            <h2 class="section-title">Próximos Vencimentos</h2>
+            <button class="btn-ver-todos">Ver todos</button>
+          </div>
+          <div class="vencimentos-list" id="vencimentosList">
+            <!-- Dados serão inseridos via JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer class="footer">
+      <p>&copy; 2026 Financeiro Empresarial. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- ============================================
+         MODAL - Nova/Editar Conta
+    ============================================ -->
+    <div id="modalConta" class="modal">
+      <div class="modal-overlay" onclick="fecharModal()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitulo">Nova Conta</h3>
+          <button class="modal-close" onclick="fecharModal()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <form id="formConta" onsubmit="salvarConta(event)">
+          <input type="hidden" id="contaId" value="" />
+
+          <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input
+              type="text"
+              id="descricao"
+              name="descricao"
+              placeholder="Ex: Conta de luz"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="categoria">Categoria</label>
+              <select id="categoria" name="categoria" required>
+                <option value="">Selecione...</option>
+                <option value="Internet">Internet</option>
+                <option value="Aluguel">Aluguel</option>
+                <option value="Utilidades">Utilidades</option>
+                <option value="Escritório">Escritório</option>
+                <option value="Software">Software</option>
+                <option value="Telefone">Telefone</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="valor">Valor (R$)</label>
+              <input
+                type="number"
+                id="valor"
+                name="valor"
+                placeholder="0,00"
+                step="0.01"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vencimento">Data de Vencimento</label>
+              <input type="date" id="vencimento" name="vencimento" required />
+            </div>
+
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status" name="status" required>
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+                <option value="Atrasado">Atrasado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn-cancelar" onclick="fecharModal()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============================================
+         MODAL - Confirmação de Exclusão
+    ============================================ -->
+    <div id="modalConfirmacao" class="modal">
+      <div class="modal-overlay" onclick="fecharModalConfirmacao()"></div>
+      <div class="modal-content modal-confirmacao">
+        <div class="modal-header">
+          <h3>Confirmar Exclusão</h3>
+          <button class="modal-close" onclick="fecharModalConfirmacao()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Tem certeza que deseja excluir esta conta?</p>
+          <p class="texto-aviso">Esta ação não pode ser desfeita.</p>
+        </div>
+        <div class="modal-actions">
+          <button
+            type="button"
+            class="btn-cancelar"
+            onclick="fecharModalConfirmacao()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn-excluir"
+            onclick="confirmarExclusao()"
+          >
+            Excluir
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="firebase.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
