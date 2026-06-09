@@ -573,8 +573,10 @@ body {
 }
 
 .btn-acao svg {
-    width: 16px;
-    height: 16px;
+    width: 20px !important;
+    height: 20px !important;
+    stroke: red !important;
+    display: block !important;
 }
 
 .ver-todas {
